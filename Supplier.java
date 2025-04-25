@@ -43,4 +43,29 @@ public class Supplier extends Person{
         }
         return -1;
     }
+    int getQuantity(Product item){
+        int id=item.getId();
+        for(int i=0;i<this.distinctProductCount;i++){
+            if(productsOnMarket[i].getId()==id){
+                return quantity[i];
+            }
+        }
+        return 0;
+    }
+    void reduceStock(Product item,int quantity){
+        int productInd=0;
+        for(productInd=0;productInd<this.distinctProductCount;productInd++){
+            if(p.equals(item)){
+                break;
+            }
+        }
+        if(productInd==this.distinctProductCount){
+            return ;
+        }
+        if(this.quantity[productInd]<quantity){
+            return;
+        }
+        this.quantity[productind]-=quantity;
+        return;
+    }
 }

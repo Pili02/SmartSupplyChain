@@ -4,4 +4,5 @@ public Transaction{
     Product product;
     int amount;
     double price;
+    
 }
