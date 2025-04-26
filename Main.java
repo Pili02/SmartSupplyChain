@@ -48,6 +48,26 @@ public class Main {
             // Assign the warehouse manager to the retailer
             retailer.warehouseManager = warehouseManager;
 
+            // Create Admin
+            Admin admin = new Admin("Admin1", 1);
+
+            // Barcode usage
+            String barcode = admin.createBarcodeForProduct("Laptop");
+            String barcodeToValidate = barcode.substring(barcode.length() - 12);
+            System.out.println("Is barcode valid? " + admin.checkIfBarcodeValid(barcodeToValidate));
+
+            // Sales trend analysis
+            Map<String, Integer> sales = new HashMap<>();
+            sales.put("Laptop", 120);
+            sales.put("Phone", 220);
+            sales.put("Tablet", 150);
+
+            System.out.println(admin.findTopProduct(sales));
+            System.out.println("Total Units Sold: " + admin.getTotalSales(sales));
+
+            // admin.scanProductBarcode("Phone"); // Feature not implemented
+            // admin.analyzeSalesTrends();        // Feature not implemented
+
             // Display initial stock
             System.out.println("Initial Stock Levels:");
             displayStock(warehouseManager);

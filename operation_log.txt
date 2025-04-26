@@ -114,3 +114,9 @@ Sun Apr 27 00:17:00 IST 2025: Retailer sent order request for 5 units of Chocola
 Sun Apr 27 00:17:01 IST 2025: Warehouse profit/loss calculated and displayed.
 Sun Apr 27 00:17:10 IST 2025: Retailer sent order request for 10 units of Laptop.
 Sun Apr 27 00:17:11 IST 2025: Warehouse profit/loss calculated and displayed.
+Sun Apr 27 00:49:49 IST 2025: Retailer sent order request for 6 units of Foundation.
+Sun Apr 27 00:49:51 IST 2025: Warehouse profit/loss calculated and displayed.
+Sun Apr 27 00:55:08 IST 2025: Retailer sent order request for 5 units of Foundation.
+Sun Apr 27 00:55:10 IST 2025: Retailer sent order request for 5 units of Chocolates.
+Sun Apr 27 00:55:12 IST 2025: Retailer sent order request for 0 units of Chocolates.
+Sun Apr 27 00:55:13 IST 2025: Warehouse profit/loss calculated and displayed.
