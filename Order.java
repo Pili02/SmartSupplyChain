@@ -1,19 +1,23 @@
-public class Order{
-    int quantity;
-    int totalPayout;
-    ProductP product;
-    Order(ProductP product,int quantity){
-        this.product=product;
-        this.quantity=quantity;
-        this.totalPayout=quantity*price;
+public class Order {
+    private int quantity;
+    private double totalPayout;
+    private ProductP product;
+
+    Order(ProductP product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+        this.totalPayout = quantity * product.getPrice();
     }
-    int getQuantity(){
+
+    public int getQuantity() {
         return this.quantity;
     }
-    int getTotalPayout(){
+
+    public double getTotalPayout() {
         return this.totalPayout;
     }
-    ProductP getProduct(){
+
+    public ProductP getProduct() {
         return this.product;
     }
 }

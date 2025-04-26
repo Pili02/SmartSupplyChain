@@ -1,0 +1,5 @@
+# Ignore all .class files
+*.class
+tempCodeRunnerFile.java
+# Ignore inventory_report.txt
+inventory_report.txt

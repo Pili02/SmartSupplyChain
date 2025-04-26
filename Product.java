@@ -1,24 +1,42 @@
-public class Product{
-    String name;
-    String Category;
-    int id;
-    Product(String name,String Category,int id){
-        this.name=name;
-        this.Category=Category;
-        this.id=id;
+public class Product {
+    private String name;
+    private String category;
+    private int id;
+
+    // Constructor
+    public Product(String name, String category, int id) {
+        this.name = name;
+        this.category = category;
+        this.id = id;
     }
-    Product(String name,int id){
-        this.name=name;
-        this.Category="Miscellaneous";
-        this.id=id;
+
+    // Overloaded Constructor
+    public Product(String name, int id) {
+        this.name = name;
+        this.category = "Miscellaneous";
+        this.id = id;
     }
-    boolean equals(Product obj){
-        if(obj.id==this.id){
+
+    // Getter for name
+    public String getName() {
+        return this.name;
+    }
+
+    // Getter for category
+    public String getCategory() {
+        return this.category;
+    }
+
+    // Getter for id
+    public int getId() {
+        return this.id;
+    }
+
+    // Equals method
+    public boolean equals(Product obj) {
+        if (obj.id == this.id) {
             return true;
         }
         return false;
-    }
-    int getId(){
-        return this.id;
     }
 }

@@ -44,6 +44,19 @@ public class Admin implements SystemMonitor {
         }
     }
 
+    // Method to display stock levels as a text-based bar chart
+    public void viewStockGraph() {
+        for (String role : usersByRole.keySet()) {
+            System.out.println("-- " + role + " --");
+            for (Person p : usersByRole.get(role)) {
+                System.out.println(p.name + "'s Stock:");
+                for (int i = 0; i < p.products.length; i++) {
+                    System.out.printf("%-15s | %s%n", p.products[i].name, "*".repeat(p.quantity[i]));
+                }
+            }
+        }
+    }
+
     // Interface Implementation
     @Override
     public void generateReport() {
@@ -60,6 +73,18 @@ public class Admin implements SystemMonitor {
         }
     }
 
+    @Override
+    public void alertLowStock() {
+        for (String role : usersByRole.keySet()) {
+            for (Person p : usersByRole.get(role)) {
+                for (int i = 0; i < p.products.length; i++) {
+                    if (p.quantity[i] < 5) { // Example threshold
+                        System.out.println("Low stock alert: " + p.products[i].name + " for " + p.name);
+                    }
+                }
+            }
+        }
+    }
 
     // Static nested class for Admin utilities
     static class AdminUtils {
