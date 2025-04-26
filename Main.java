@@ -1,7 +1,6 @@
 import java.util.*;
 import java.io.FileWriter;
 import java.io.IOException;
-import admin.Admin;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,7 +17,6 @@ public class Main {
 
             // Create sample quantities
             int[] quantities = {10, 20, 15, 25, 50, 30};
-            int[] WMQuantity = {0, 0, 0, 0, 0, 0};
             // Create sample transactions
             Transaction[] transactions = new Transaction[20];
 
@@ -29,7 +27,7 @@ public class Main {
             WarehouseManager warehouseManager = new WarehouseManager(
                 "Warehouse1", 
                 new Product[]{product1, product2, product3, product4, product5, product6}, 
-                WMQuantity, 
+                quantities, 
                 201, 
                 transactions
             );
@@ -99,9 +97,9 @@ public class Main {
             System.out.println("\nCalculating profit of the warehouse...");
             double profit = warehouseManager.calculateProfitOrLoss();
             if (profit > 0) {
-                System.out.println("Warehouse Profit: $" + profit);
+                System.out.println("Warehouse Profit: ₹" + profit);
             } else if (profit < 0) {
-                System.out.println("Warehouse Loss: $" + Math.abs(profit));
+                System.out.println("Warehouse Loss: ₹" + Math.abs(profit));
             } else {
                 System.out.println("No profit or loss for the warehouse.");
             }
