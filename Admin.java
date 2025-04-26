@@ -5,6 +5,7 @@ import java.util.*;
 interface SystemMonitor {
     void generateReport();
     void alertLowStock();
+    void predictDemand(); // Add this method to the interface
 }
 
 // Admin class with nested helper class
@@ -51,7 +52,7 @@ public class Admin implements SystemMonitor {
             for (Person p : usersByRole.get(role)) {
                 System.out.println(p.name + "'s Stock:");
                 for (int i = 0; i < p.products.length; i++) {
-                    System.out.printf("%-15s | %s%n", p.products[i].name, "*".repeat(p.quantity[i]));
+                    System.out.printf("%-15s | %s%n", p.products[i].getName(), "*".repeat(p.quantity[i])); // Use getName()
                 }
             }
         }
@@ -79,7 +80,7 @@ public class Admin implements SystemMonitor {
             for (Person p : usersByRole.get(role)) {
                 for (int i = 0; i < p.products.length; i++) {
                     if (p.quantity[i] < 5) { // Example threshold
-                        System.out.println("Low stock alert: " + p.products[i].name + " for " + p.name);
+                        System.out.println("Low stock alert: " + p.products[i].getName() + " for " + p.name); // Use getName()
                     }
                 }
             }
@@ -98,8 +99,68 @@ public class Admin implements SystemMonitor {
     }
 
     // Method to simulate demand prediction (basic demo)
+    @Override
     public void predictDemand() {
-        System.out.println("Predicting future demand using sales history...");
-        // Placeholder for AI algorithm integration
+        System.out.println("\n=== Demand Prediction Report ===");
+
+        // Step 1: Calculate total sales and transaction counts
+        Map<Integer, Integer> totalSales = calculateTotalSales();
+        Map<Integer, Integer> salesCount = calculateSalesCount();
+
+        // Step 2: Generate predictions
+        generateDemandPredictions(totalSales, salesCount);
+    }
+
+    // Helper method to calculate total sales
+    private Map<Integer, Integer> calculateTotalSales() {
+        Map<Integer, Integer> totalSales = new HashMap<>();
+        for (String role : usersByRole.keySet()) {
+            for (Person p : usersByRole.get(role)) {
+                if (p.paymentHistory == null) continue;
+
+                for (Transaction t : p.paymentHistory) {
+                    if (t != null && t.getProduct() != null) {
+                        int productId = t.getProduct().getId();
+                        totalSales.put(productId, totalSales.getOrDefault(productId, 0) + t.getAmount());
+                    }
+                }
+            }
+        }
+        return totalSales;
+    }
+
+    // Helper method to calculate sales count
+    private Map<Integer, Integer> calculateSalesCount() {
+        Map<Integer, Integer> salesCount = new HashMap<>();
+        for (String role : usersByRole.keySet()) {
+            for (Person p : usersByRole.get(role)) {
+                if (p.paymentHistory == null) continue;
+
+                for (Transaction t : p.paymentHistory) {
+                    if (t != null && t.getProduct() != null) {
+                        int productId = t.getProduct().getId();
+                        salesCount.put(productId, salesCount.getOrDefault(productId, 0) + 1);
+                    }
+                }
+            }
+        }
+        return salesCount;
+    }
+
+    // Helper method to generate demand predictions
+    private void generateDemandPredictions(Map<Integer, Integer> totalSales, Map<Integer, Integer> salesCount) {
+        for (int productId : totalSales.keySet()) {
+            int total = totalSales.get(productId);
+            int count = salesCount.getOrDefault(productId, 0);
+
+            // Avoid division by zero
+            if (count == 0) {
+                System.out.println("Product ID: " + productId + " | No transactions available for prediction.");
+                continue;
+            }
+
+            double predictedDemand = (double) total / count;
+            System.out.println("Product ID: " + productId + " | Predicted Average Demand per Order: " + String.format("%.2f", predictedDemand));
+        }
     }
 }

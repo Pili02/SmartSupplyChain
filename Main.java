@@ -1,82 +1,136 @@
 import java.util.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        // Create sample products
-        Product product1 = new Product("Laptop", "Electronics", 1);
-        Product product2 = new Product("Phone", "Electronics", 2);
-        Product product3 = new Product("Tablet", "Electronics", 3);
+        Scanner scanner = new Scanner(System.in);
 
-        // Create sample quantities
-        int[] quantities = {10, 20, 15};
+        try {
+            // Create sample products
+            Product product1 = new Product("Laptop", "Electronics", 1);
+            Product product2 = new Product("Phone", "Electronics", 2);
+            Product product3 = new Product("Tablet", "Electronics", 3);
+            Product product4 = new Product("Headphones", "Electronics", 4);
+            Product product5 = new Product("Chocolates", "Food", 5);
+            Product product6 = new Product("Foundation", "MakeUp", 6);
 
-        // Create sample transactions
-        Transaction[] transactions = new Transaction[10];
+            // Create sample quantities
+            int[] quantities = {10, 20, 15, 25, 50, 30};
+            int[] WMQuantity = {0, 0, 0, 0, 0, 0};
+            // Create sample transactions
+            Transaction[] transactions = new Transaction[20];
 
-        // Create a retailer
-        Retailer retailer = new Retailer("Retailer1", new Product[]{product1, product2}, new int[]{5, 10}, 101, transactions);
+            // Create a retailer
+            Retailer retailer = new Retailer("Retailer1", new Product[]{product1, product2, product5}, new int[]{5, 10, 20}, 101, transactions);
 
-        // Create a warehouse manager
-        WarehouseManager warehouseManager = new WarehouseManager("Warehouse1", new Product[]{product1, product2, product3}, quantities, 201, transactions);
+            // Create a warehouse manager
+            WarehouseManager warehouseManager = new WarehouseManager(
+                "Warehouse1", 
+                new Product[]{product1, product2, product3, product4, product5, product6}, 
+                WMQuantity, 
+                201, 
+                transactions
+            );
 
-        // Assign the warehouse manager to the retailer
-        retailer.warehouseManager = warehouseManager;
+            // Add suppliers with high stock quantities
+            Supplier[] bigSuppliers = new Supplier[20];
+            for (int i = 0; i < 20; i++) {
+                bigSuppliers[i] = new Supplier(
+                    "Supplier" + (i + 1),
+                    new Product[]{product1, product2, product3, product4, product5, product6},
+                    new int[]{100, 100, 100, 100, 100, 100},
+                    300 + i,
+                    transactions
+                );
+            }
+            warehouseManager.setSuppliers(bigSuppliers);
 
-        // Test sending an order request
-        retailer.sendOrderRequest(product1, 5);
+            // Assign the warehouse manager to the retailer
+            retailer.warehouseManager = warehouseManager;
 
-        // Test adding a transaction
-        retailer.addTransaction("Order1", "Warehouse1", product1, 5, 500.0);
+            // Display initial stock
+            System.out.println("Initial Stock Levels:");
+            displayStock(warehouseManager);
 
-        // Create a supplier
-        Supplier supplier = new Supplier("Supplier1", new Product[]{product1, product2, product3}, quantities, 301, transactions);
+            // User input for sending an order request
+            while (true) {
+                System.out.println("\nEnter Retailers Order product ID to order (1-6) or 0 to exit: ");
+                int productId = scanner.nextInt();
+                if (productId == 0) break;
 
-        // Assign suppliers to the warehouse manager
-        warehouseManager.setSuppliers(new Supplier[]{supplier}); // Use the setter method
+                System.out.println("Enter Retailers quantity to order: ");
+                int orderQuantity = scanner.nextInt();
+                System.out.println("Enter Retailers price per item to order: ");
+                double price = scanner.nextInt();
 
-        // Test supplier stock reduction
-        supplier.reduceStock(product1, 5);
+                Product selectedProduct = null;
+                switch (productId) {
+                    case 1 -> selectedProduct = product1;
+                    case 2 -> selectedProduct = product2;
+                    case 3 -> selectedProduct = product3;
+                    case 4 -> selectedProduct = product4;
+                    case 5 -> selectedProduct = product5;
+                    case 6 -> selectedProduct = product6;
+                    default -> System.out.println("Invalid product ID.");
+                }
 
-        // Test warehouse manager filling orders
-        Order order1 = new Order(new ProductP("Laptop", "Electronics", 1, 1000.0), 5);
-        Order order2 = new Order(new ProductP("Phone", "Electronics", 2, 800.0), 10);
-        warehouseManager.addOrder(order1);
-        warehouseManager.addOrder(order2);
+                if (selectedProduct != null) {
+                    Order newOrder = new Order(
+                        new ProductP(
+                            selectedProduct.getName(),
+                            selectedProduct.getCategory(),
+                            selectedProduct.getId(),
+                            price
+                        ),
+                        orderQuantity
+                    );
+                    retailer.sendOrderRequest(newOrder);
+                    logOperation("Retailer sent order request for " + orderQuantity + " units of " + selectedProduct.getName() + ".");
+                }
+            }
 
-        System.out.println("Warehouse manager starts filling orders...");
-        warehouseManager.fillOrders();
+            // Display updated stock
+            System.out.println("\nUpdated Stock Levels:");
+            displayStock(warehouseManager);
 
-        // Display profit or loss
-        System.out.println("\nCalculating profit or loss...");
-        warehouseManager.displayProfitOrLoss();
+            // Display profit of the warehouse
+            System.out.println("\nCalculating profit of the warehouse...");
+            double profit = warehouseManager.calculateProfitOrLoss();
+            if (profit > 0) {
+                System.out.println("Warehouse Profit: $" + profit);
+            } else if (profit < 0) {
+                System.out.println("Warehouse Loss: $" + Math.abs(profit));
+            } else {
+                System.out.println("No profit or loss for the warehouse.");
+            }
+            logOperation("Warehouse profit/loss calculated and displayed.");
 
-        // Test admin functionality
-        Admin admin = new Admin("Admin1", 401);
-        admin.addUser("Retailer", retailer);
-        admin.addUser("WarehouseManager", warehouseManager);
-        admin.addUser("Supplier", supplier);
-
-        admin.viewAllStockLevels();
-        admin.generateReport();
-
-        // Test bar graph generation (placeholder)
-        System.out.println("Generating bar graph for stock levels...");
-        generateBarGraph(warehouseManager);
+        } catch (InputMismatchException e) {
+            System.err.println("Invalid input. Please enter numeric values where required.");
+        } catch (Exception e) {
+            System.err.println("An unexpected error occurred: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
     }
 
-    // Placeholder for bar graph generation
-    public static void generateBarGraph(WarehouseManager warehouseManager) {
-        // Example: Print stock levels as a bar graph in the console
+    // Method to display stock levels
+    public static void displayStock(WarehouseManager warehouseManager) {
         Product[] products = warehouseManager.getTargetProducts();
-        int[] quantities = warehouseManager.getQuantities(); // Assuming getQuantities() exists
+        int[] quantities = warehouseManager.getQuantities();
 
-        System.out.println("Stock Levels:");
         for (int i = 0; i < products.length; i++) {
-            System.out.print(products[i].getName() + ": ");
-            for (int j = 0; j < quantities[i]; j++) {
-                System.out.print("|");
-            }
-            System.out.println(" (" + quantities[i] + ")");
+            System.out.println(products[i].getName() + ": " + quantities[i]);
+        }
+    }
+
+    // Logging system
+    public static void logOperation(String message) {
+        try (FileWriter fw = new FileWriter("operation_log.txt", true)) {
+            fw.write(new Date() + ": " + message + "\n");
+        } catch (IOException e) {
+            System.err.println("Logging failed: " + e.getMessage());
         }
     }
 }

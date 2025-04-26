@@ -1,0 +1,71 @@
+Sat Apr 26 19:28:51 IST 2025: Retailer sent order request for 5 units of Laptop.
+Sat Apr 26 19:28:51 IST 2025: Transaction added for 5 units of Laptop.
+Sat Apr 26 19:28:51 IST 2025: Suppliers assigned to WarehouseManager.
+Sat Apr 26 19:28:51 IST 2025: Supplier1 reduced stock of Laptop by 5 units.
+Sat Apr 26 19:28:51 IST 2025: Orders added to WarehouseManager.
+Sat Apr 26 19:28:51 IST 2025: WarehouseManager started filling orders.
+Sat Apr 26 19:28:51 IST 2025: Profit or loss calculated and displayed.
+Sat Apr 26 19:28:51 IST 2025: Admin added users.
+Sat Apr 26 19:28:51 IST 2025: Admin generated inventory report.
+Sat Apr 26 19:28:51 IST 2025: Admin generated demand prediction report.
+Sat Apr 26 19:28:51 IST 2025: Bar graph for stock levels generated.
+Sat Apr 26 20:35:34 IST 2025: Retailer sent order request for 10 units of Tablet.
+Sat Apr 26 20:35:34 IST 2025: Transaction added for 5 units of Laptop.
+Sat Apr 26 20:35:34 IST 2025: Suppliers assigned to WarehouseManager.
+Sat Apr 26 20:35:34 IST 2025: Supplier1 reduced stock of Laptop by 5 units.
+Sat Apr 26 20:35:34 IST 2025: Orders added to WarehouseManager.
+Sat Apr 26 20:35:34 IST 2025: WarehouseManager started filling orders.
+Sat Apr 26 20:35:34 IST 2025: Profit or loss calculated and displayed.
+Sat Apr 26 20:35:34 IST 2025: Admin added users.
+Sat Apr 26 20:35:34 IST 2025: Admin generated inventory report.
+Sat Apr 26 20:35:34 IST 2025: Admin generated demand prediction report.
+Sat Apr 26 20:35:34 IST 2025: Bar graph for stock levels generated.
+Sat Apr 26 20:36:36 IST 2025: Retailer sent order request for 5 units of Foundation.
+Sat Apr 26 20:36:36 IST 2025: Transaction added for 5 units of Laptop.
+Sat Apr 26 20:36:36 IST 2025: Suppliers assigned to WarehouseManager.
+Sat Apr 26 20:36:36 IST 2025: Supplier1 reduced stock of Laptop by 5 units.
+Sat Apr 26 20:36:36 IST 2025: Orders added to WarehouseManager.
+Sat Apr 26 20:36:36 IST 2025: WarehouseManager started filling orders.
+Sat Apr 26 20:36:36 IST 2025: Profit or loss calculated and displayed.
+Sat Apr 26 20:36:36 IST 2025: Admin added users.
+Sat Apr 26 20:36:36 IST 2025: Admin generated inventory report.
+Sat Apr 26 20:36:36 IST 2025: Admin generated demand prediction report.
+Sat Apr 26 20:36:36 IST 2025: Bar graph for stock levels generated.
+Sat Apr 26 20:39:54 IST 2025: Retailer sent order request for 25 units of Headphones.
+Sat Apr 26 20:40:13 IST 2025: Retailer sent order request for 26 units of Headphones.
+Sat Apr 26 20:42:12 IST 2025: Retailer sent order request for 67 units of Tablet.
+Sat Apr 26 20:42:12 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 20:43:52 IST 2025: Retailer sent order request for 40 units of Chocolates.
+Sat Apr 26 20:43:52 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 20:47:35 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 20:54:32 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 20:54:41 IST 2025: Retailer sent order request for 3 units of Laptop.
+Sat Apr 26 20:54:41 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 20:57:09 IST 2025: Retailer sent order request for 25 units of Chocolates.
+Sat Apr 26 20:57:09 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 20:58:06 IST 2025: Retailer sent order request for 10 units of Tablet.
+Sat Apr 26 20:58:06 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:00:57 IST 2025: Retailer sent order request for 5 units of Tablet.
+Sat Apr 26 21:00:57 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:02:56 IST 2025: Retailer sent order request for 10 units of Tablet.
+Sat Apr 26 21:02:56 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:03:14 IST 2025: Retailer sent order request for 20 units of Laptop.
+Sat Apr 26 21:03:15 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:03:31 IST 2025: Retailer sent order request for 1 units of Phone.
+Sat Apr 26 21:03:31 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:14:52 IST 2025: Retailer sent order request for 3 units of Chocolates.
+Sat Apr 26 21:14:52 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:16:40 IST 2025: Retailer sent order request for 5 units of Tablet.
+Sat Apr 26 21:16:40 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:18:53 IST 2025: Retailer sent order request for 5 units of Headphones.
+Sat Apr 26 21:18:53 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:20:24 IST 2025: Retailer sent order request for 5 units of Headphones.
+Sat Apr 26 21:20:24 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:20:34 IST 2025: Retailer sent order request for 5 units of Headphones.
+Sat Apr 26 21:20:34 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:29:09 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 21:29:17 IST 2025: Retailer sent order request for 10 units of Headphones.
+Sat Apr 26 21:29:21 IST 2025: Retailer sent order request for 12 units of Headphones.
+Sat Apr 26 21:29:30 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 22:00:59 IST 2025: Retailer sent order request for 10 units of Headphones.
+Sat Apr 26 22:01:01 IST 2025: Warehouse profit/loss calculated and displayed.

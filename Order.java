@@ -8,6 +8,11 @@ public class Order {
         this.quantity = quantity;
         this.totalPayout = quantity * product.getPrice();
     }
+    Order(Product product, int quantity,double price) {
+        this.product = new ProductP(product,price);
+        this.quantity = quantity;
+        this.totalPayout = quantity * product.getPrice();
+    }
 
     public int getQuantity() {
         return this.quantity;

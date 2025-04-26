@@ -34,9 +34,6 @@ public class Product {
 
     // Equals method
     public boolean equals(Product obj) {
-        if (obj.id == this.id) {
-            return true;
-        }
-        return false;
+        return (obj.id == this.id);
     }
 }

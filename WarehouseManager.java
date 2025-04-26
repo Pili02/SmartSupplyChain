@@ -7,8 +7,8 @@ public class WarehouseManager extends Person {
 
     WarehouseManager(String name, Product[] products, int[] quantity, int id, Transaction[] paymentHistory) {
         super(name, products, quantity, id, paymentHistory);
-        this.targetProducts = products; // Initialize targetProducts with the provided products
-        this.suppliers = new Supplier[0]; // Initialize suppliers array to avoid null
+        this.targetProducts = products; 
+        this.suppliers = new Supplier[0]; 
     }
 
     public Product[] getTargetProducts() {
@@ -28,42 +28,64 @@ public class WarehouseManager extends Person {
         this.suppliers = suppliers;
     }
 
-    // Add a method to get quantities
     public int[] getQuantities() {
-        return this.quantity; // Assuming `quantity` is inherited from the `Person` class
+        return this.quantity;
     }
 
-    int receiveOrderRequest(Product item, int quantity) {
-        boolean found = false; // Fix boolean initialization
+    int receiveOrderRequest(Order order) {
+        Product targetProduct = order.getProduct();
+        int targetQuantity = order.getQuantity();
+        boolean found = false;
         int productInd = 0;
+
         for (productInd = 0; productInd < this.distinctProductCount; productInd++) {
-            if (this.products[productInd].equals(item)) { // Fix variable reference
+            if (this.products[productInd].equals(targetProduct)) {
                 found = true;
                 break;
             }
         }
-        if (!found) { // Fix boolean comparison
+        if (!found) {
             return 0;
         }
+
         int currQuantity = this.quantity[productInd];
-        if (currQuantity < quantity) {
+        int fulfilledQuantity = 0;
+        if (currQuantity < targetQuantity) {
+            int remainingQuantity = targetQuantity - currQuantity;
             this.quantity[productInd] = 0;
-            return currQuantity;
+            fulfilledQuantity += currQuantity;
+
+            // Acquire remaining quantity from the cheapest suppliers
+            while (remainingQuantity > 0) {
+                Supplier potentialSupplier = null;
+                int minPrice = Integer.MAX_VALUE;
+                for (Supplier s : this.suppliers) {
+                    int supplierPrice = s.getPrice(targetProduct);
+                    if (supplierPrice == -1 || s.getQuantity(targetProduct) <= 0) {
+                        continue;
+                    }
+                    if (supplierPrice < minPrice) {
+                        potentialSupplier = s;
+                        minPrice = supplierPrice;
+                    }
+                }
+                if (potentialSupplier == null) {
+                    break;
+                }
+                int supplierQuantity = potentialSupplier.getQuantity(targetProduct);
+                int quantityToAcquire = Math.min(supplierQuantity, remainingQuantity);
+                potentialSupplier.reduceStock(targetProduct, quantityToAcquire);
+                remainingQuantity -= quantityToAcquire;
+                fulfilledQuantity += quantityToAcquire;
+                this.totalCost += quantityToAcquire * minPrice;
+            }
+        } else {
+            this.quantity[productInd] -= targetQuantity;
+            fulfilledQuantity = targetQuantity;
         }
-        currQuantity -= quantity;
-        this.quantity[productInd] = currQuantity;
 
-        // Example of creating a new Transaction
-        Transaction transaction = new Transaction(
-            "Order from Retailer",
-            "Warehouse",
-            item,
-            quantity,
-            currQuantity * 100.0 // Example price
-        );
-        // ...use transaction as needed...
-
-        return quantity;
+        this.totalRevenue += fulfilledQuantity * ((ProductP) targetProduct).getPrice();
+        return fulfilledQuantity;
     }
 
     void addOrder(Order item) {
@@ -76,7 +98,7 @@ public class WarehouseManager extends Person {
         this.orders = newOrder;
     }
 
-    void receiveRetailerRequest(Order... requests) { // Fix varargs syntax
+    void receiveRetailerRequest(Order... requests) { 
         for (Order p : requests) {
             this.addOrder(p);
         }
@@ -97,8 +119,14 @@ public class WarehouseManager extends Person {
         return;
     }
 
+    void addStock(Product item, int... quantities) {
+        for (int q : quantities) {
+            addStock(item, q);
+        }
+    }
+
     void fillOrders() {
-        if (this.suppliers == null || this.suppliers.length == 0) { // Handle null or empty suppliers array
+        if (this.suppliers == null || this.suppliers.length == 0) {
             System.out.println("No suppliers available to fill orders.");
             return;
         }
@@ -108,9 +136,9 @@ public class WarehouseManager extends Person {
 
             while (targetQuantity > 0) {
                 Supplier potentialSupplier = null;
-                int minPrice = Integer.MAX_VALUE; // Fix type and initialization
+                int minPrice = Integer.MAX_VALUE;
                 for (Supplier s : this.suppliers) {
-                    int supplierPrice = s.getPrice(targetProduct); // Ensure getPrice works with ProductP
+                    int supplierPrice = s.getPrice(targetProduct);
                     if (supplierPrice == -1 || s.getQuantity(targetProduct) <= 0) {
                         continue;
                     }
@@ -119,16 +147,16 @@ public class WarehouseManager extends Person {
                         minPrice = supplierPrice;
                     }
                 }
-                if (potentialSupplier == null) { // Handle case where no supplier is found
+                if (potentialSupplier == null) {
                     System.out.println("Unable to fulfill order for " + targetProduct.getProductName());
                     break;
                 }
                 int currQuantity = potentialSupplier.getQuantity(targetProduct);
-                int quantityToReduce = Math.min(currQuantity, targetQuantity); // Use Math.min
+                int quantityToReduce = Math.min(currQuantity, targetQuantity);
                 potentialSupplier.reduceStock(targetProduct, quantityToReduce);
                 targetQuantity -= quantityToReduce;
 
-                // Track the cost of acquiring products
+
                 this.totalCost += quantityToReduce * minPrice;
             }
 
@@ -137,12 +165,12 @@ public class WarehouseManager extends Person {
         }
     }
 
-    // Method to calculate profit or loss
+
     public double calculateProfitOrLoss() {
-        return this.totalRevenue - this.totalCost;
+
+        return totalRevenue - totalCost;
     }
 
-    // Method to display profit or loss
     public void displayProfitOrLoss() {
         double profitOrLoss = calculateProfitOrLoss();
         if (profitOrLoss > 0) {

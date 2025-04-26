@@ -5,20 +5,27 @@ public class Retailer extends Person {
         super(name, products, quantity, id, paymentHistory);
     }
 
-    void sendOrderRequest(Product item, int quantity) {
-        int fulfilledQuantity = warehouseManager.receiveOrderRequest(item, quantity);
+    void sendOrderRequest(Order order) {
+        int fulfilledQuantity = warehouseManager.receiveOrderRequest(order);
 
         if (fulfilledQuantity > 0) {
-            System.out.println("Order sent: " + fulfilledQuantity + " units of " + item.getName());
-            updateInventory(item, fulfilledQuantity);
+            System.out.println("Order sent: " + fulfilledQuantity
+                + " units of " + order.getProduct().getName());
+            updateInventory(order.getProduct(), fulfilledQuantity);
         } else {
-            System.out.println("Order could not be fulfilled for: " + item.getName());
+            System.out.println("Order could not be fulfilled for: "
+                + order.getProduct().getName());
         }
     }
 
-    void updateInventory(Product item, int quantityToAdd) {
+    void sendOrderRequest(ProductP item, int orderQuantity) {
+        Order newOrder = new Order(item, orderQuantity);
+        sendOrderRequest(newOrder);
+    }
+
+    void updateInventory(ProductP item, int quantityToAdd) {
         for (int i = 0; i < this.products.length; i++) {
-            if (this.products[i].equals(item)) {
+            if (this.products[i].getId()==(item.getId())) {
                 this.quantity[i] += quantityToAdd;
                 return;
             }

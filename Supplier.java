@@ -98,6 +98,12 @@ public class Supplier extends Person {
         return -1;
     }
 
+    int getPrice(Product item, int discountPercentage) {
+        int basePrice = getPrice(item);
+        if (basePrice <= 0) return basePrice;
+        return (int) (basePrice - (basePrice * discountPercentage / 100.0));
+    }
+
     int getPrice(ProductP item) {
         int id = item.getId();
         for (int i = 0; i < this.distinctProductCount; i++) {
