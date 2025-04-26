@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Supplier extends Person {
+public class Supplier extends Person implements OrderHandler{
 
     private Random rand = new Random();
     private ProductP[] productsOnMarket;
@@ -86,6 +86,11 @@ public class Supplier extends Person {
         );
 
         return quantity;
+    }
+
+    @Override
+    public int receiveOrderRequest(Order order) {
+        return receiveOrderRequest(order.getProduct(), order.getQuantity());
     }
 
     int getPrice(Product item) {

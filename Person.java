@@ -14,13 +14,13 @@ public abstract class Person {
         this.paymentHistory = paymentHistory;
         this.distinctProductCount = products.length;
     }
-
+    public abstract String getRole();
     // Add a getter for the name field
     public String getName() {
         return this.name;
     }
 
-    public abstract String getRole();
+    
 
     String stockUpdate() {
         StringBuilder stockDetails = new StringBuilder();

@@ -1,4 +1,4 @@
-public class WarehouseManager extends Person {
+public class WarehouseManager extends Person implements OrderHandler, WarehouseOperations {
     private Product[] targetProducts;
     private Order[] orders;
     private Supplier[] suppliers;
@@ -32,7 +32,8 @@ public class WarehouseManager extends Person {
         return this.quantity;
     }
 
-    int receiveOrderRequest(Order order) {
+    @Override
+    public int receiveOrderRequest(Order order) {
         Product targetProduct = order.getProduct();
         int targetQuantity = order.getQuantity();
         boolean found = false;
@@ -88,7 +89,8 @@ public class WarehouseManager extends Person {
         return fulfilledQuantity;
     }
 
-    void addOrder(Order item) {
+    @Override
+    public void addOrder(Order item) {
         int len = (this.orders == null) ? 0 : this.orders.length; // Handle null orders array
         Order[] newOrder = new Order[len + 1]; // Fix type mismatch
         for (int i = 0; i < len; i++) {
@@ -98,13 +100,15 @@ public class WarehouseManager extends Person {
         this.orders = newOrder;
     }
 
-    void receiveRetailerRequest(Order... requests) { 
+    @Override
+    public void receiveRetailerRequest(Order... requests) { 
         for (Order p : requests) {
             this.addOrder(p);
         }
     }
 
-    void addStock(Product item, int quantity) {
+    @Override
+    public void addStock(Product item, int quantity) {
         int prodind = 0;
         for (prodind = 0; prodind < this.distinctProductCount; prodind++) {
             if (this.products[prodind].equals(item)) {
@@ -119,13 +123,15 @@ public class WarehouseManager extends Person {
         return;
     }
 
-    void addStock(Product item, int... quantities) {
+    @Override
+    public void addStock(Product item, int... quantities) {
         for (int q : quantities) {
             addStock(item, q);
         }
     }
 
-    void fillOrders() {
+    @Override
+    public void fillOrders() {
         if (this.suppliers == null || this.suppliers.length == 0) {
             System.out.println("No suppliers available to fill orders.");
             return;
@@ -166,11 +172,13 @@ public class WarehouseManager extends Person {
     }
 
 
+    @Override
     public double calculateProfitOrLoss() {
 
         return totalRevenue - totalCost;
     }
 
+    @Override
     public void displayProfitOrLoss() {
         double profitOrLoss = calculateProfitOrLoss();
         if (profitOrLoss > 0) {
@@ -182,6 +190,7 @@ public class WarehouseManager extends Person {
         }
     }
     
+    @Override
     public String getRole() {
         return "Warehouse Manager";
     }

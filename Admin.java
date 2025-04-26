@@ -1,5 +1,3 @@
-package com.smartsupplychain;
-
 import java.io.*;
 import java.util.*;
 

@@ -108,6 +108,8 @@ public class Main {
 
         } catch (InputMismatchException e) {
             System.err.println("Invalid input. Please enter numeric values where required.");
+        } catch (IOException e) {
+            System.err.println("File I/O error: " + e.getMessage());
         } catch (Exception e) {
             System.err.println("An unexpected error occurred: " + e.getMessage());
         } finally {
@@ -126,11 +128,9 @@ public class Main {
     }
 
     // Logging system
-    public static void logOperation(String message) {
+    public static void logOperation(String message) throws IOException {
         try (FileWriter fw = new FileWriter("operation_log.txt", true)) {
             fw.write(new Date() + ": " + message + "\n");
-        } catch (IOException e) {
-            System.err.println("Logging failed: " + e.getMessage());
         }
     }
 }
