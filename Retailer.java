@@ -42,4 +42,8 @@ public class Retailer extends Person {
             }
         }
     }
+    @Override
+    public String getRole() {
+        return "Retailer";
+    }
 }

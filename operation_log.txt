@@ -69,3 +69,11 @@ Sat Apr 26 21:29:21 IST 2025: Retailer sent order request for 12 units of Headph
 Sat Apr 26 21:29:30 IST 2025: Warehouse profit/loss calculated and displayed.
 Sat Apr 26 22:00:59 IST 2025: Retailer sent order request for 10 units of Headphones.
 Sat Apr 26 22:01:01 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 22:16:32 IST 2025: Retailer sent order request for 5 units of Headphones.
+Sat Apr 26 22:16:34 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 22:45:33 IST 2025: Retailer sent order request for 10 units of Chocolates.
+Sat Apr 26 22:45:42 IST 2025: Retailer sent order request for 10 units of Chocolates.
+Sat Apr 26 22:45:43 IST 2025: Warehouse profit/loss calculated and displayed.
+Sat Apr 26 22:45:51 IST 2025: Retailer sent order request for 1 units of Laptop.
+Sat Apr 26 22:45:54 IST 2025: Retailer sent order request for 1 units of Laptop.
+Sat Apr 26 22:45:55 IST 2025: Warehouse profit/loss calculated and displayed.

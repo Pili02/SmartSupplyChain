@@ -20,6 +20,8 @@ public abstract class Person {
         return this.name;
     }
 
+    public abstract String getRole();
+
     String stockUpdate() {
         StringBuilder stockDetails = new StringBuilder();
         for (int i = 0; i < products.length; i++) {

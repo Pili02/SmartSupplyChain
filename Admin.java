@@ -1,3 +1,5 @@
+package com.smartsupplychain;
+
 import java.io.*;
 import java.util.*;
 
@@ -5,7 +7,7 @@ import java.util.*;
 interface SystemMonitor {
     void generateReport();
     void alertLowStock();
-    void predictDemand(); // Add this method to the interface
+    void predictDemand();
 }
 
 // Admin class with nested helper class

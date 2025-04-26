@@ -150,6 +150,12 @@ public class Supplier extends Person {
         this.quantity[productInd] -= quantity; // Fix variable name
     }
 
+    void reduceStock(Product item, int... quantities) {
+        for (int q : quantities) {
+            reduceStock(item, q);
+        }
+    }
+
     void reduceStock(ProductP item, int quantity) {
         int productInd = 0;
         for (productInd = 0; productInd < this.distinctProductCount; productInd++) {
@@ -164,5 +170,8 @@ public class Supplier extends Person {
             return;
         }
         this.quantity[productInd] -= quantity;
+    }
+    public String getRole() {
+        return "Supplier";
     }
 }

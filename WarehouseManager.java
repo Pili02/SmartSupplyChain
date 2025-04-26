@@ -181,4 +181,8 @@ public class WarehouseManager extends Person {
             System.out.println("No profit or loss.");
         }
     }
+    
+    public String getRole() {
+        return "Warehouse Manager";
+    }
 }
