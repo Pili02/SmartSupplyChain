@@ -106,3 +106,11 @@ Sun Apr 27 00:07:42 IST 2025: Warehouse profit/loss calculated and displayed.
 Sun Apr 27 00:08:34 IST 2025: Warehouse profit/loss calculated and displayed.
 Sun Apr 27 00:08:52 IST 2025: Retailer sent order request for 10000 units of Headphones.
 Sun Apr 27 00:08:53 IST 2025: Warehouse profit/loss calculated and displayed.
+Sun Apr 27 00:16:56 IST 2025: Retailer sent order request for 5 units of Chocolates.
+Sun Apr 27 00:16:57 IST 2025: Retailer sent order request for 5 units of Chocolates.
+Sun Apr 27 00:16:58 IST 2025: Retailer sent order request for 5 units of Chocolates.
+Sun Apr 27 00:16:58 IST 2025: Retailer sent order request for 5 units of Chocolates.
+Sun Apr 27 00:17:00 IST 2025: Retailer sent order request for 5 units of Chocolates.
+Sun Apr 27 00:17:01 IST 2025: Warehouse profit/loss calculated and displayed.
+Sun Apr 27 00:17:10 IST 2025: Retailer sent order request for 10 units of Laptop.
+Sun Apr 27 00:17:11 IST 2025: Warehouse profit/loss calculated and displayed.
