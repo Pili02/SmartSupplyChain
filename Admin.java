@@ -4,24 +4,20 @@ import aitrendanalyzer.TrendAnalyzer;
 import java.io.*;
 import java.util.*;
 
-// Interface for system-wide actions
 interface SystemMonitor {
     void generateReport();
     void alertLowStock();
     void predictDemand();
 }
 
-// Admin class with nested helper class
 public class Admin implements SystemMonitor {
     String name;
     int id;
     Map<String, List<Person>> usersByRole = new HashMap<>();
 
-    // New fields for barcode scanner and trend analyzer
     private BarcodeScanner barcodeScanner;
     private TrendAnalyzer trendAnalyzer;
 
-    // Constructor
     public Admin(String name, int id) {
         this.name = name;
         this.id = id;
@@ -34,35 +30,35 @@ public class Admin implements SystemMonitor {
         trendAnalyzer = new TrendAnalyzer();
     }
 
-    // ===== New methods to use barcode scanner and AI trend analyzer =====
+    public void scanProductBarcode() {
+        for (String role : usersByRole.keySet()) {
+            for (Person p : usersByRole.get(role)) {
+                if (p.products != null) {
+                    for (int i = 0; i < p.products.length; i++) {
+                        if (p.products[i] != null) {
+                            barcodeScanner.includeProduct(p.products[i].getName(), p.products[i].getId());
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("All products have been included in the barcode scanner.");
+    }
 
-    public void scanProductBarcode(String productName) {
-        // barcodeScanner.scanProduct(productName); // <-- Remove or implement this method in BarcodeScanner
-        System.out.println("Barcode scan feature not implemented.");
+    public String getProductUsingId(int id){
+        String productName = barcodeScanner.getProduct(id);
+        return productName != null ? productName : "Product not found";
     }
 
     public void analyzeSalesTrends() {
-        // trendAnalyzer.analyzeTrends(); // <-- Remove or implement this method in TrendAnalyzer
         System.out.println("Sales trend analysis feature not implemented.");
     }
 
-    public String createBarcodeForProduct(String productName) {
-        String barcodeInfo = barcodeScanner.generateBarcode(productName);
-        System.out.println(barcodeInfo); // display generated barcode
-        return barcodeInfo;
-    }
-
-    // Admin method to validate barcode
-    public boolean checkIfBarcodeValid(String barcode) {
-        return barcodeScanner.validateBarcode(barcode);
-    }
-
-    // Admin method to find best-selling product
     public String findTopProduct(Map<String, Integer> salesData) {
         return trendAnalyzer.findBestSellingProduct(salesData);
     }
 
-    // Admin method to find total sales
+
     public int getTotalSales(Map<String, Integer> salesData) {
         return trendAnalyzer.calculateTotalSales(salesData);
     }
@@ -179,7 +175,6 @@ public class Admin implements SystemMonitor {
         }
     }
 
-    // Static nested AdminUtils
     static class AdminUtils {
         public static void log(String message) {
             try (FileWriter fw = new FileWriter("admin_log.txt", true)) {

@@ -15,7 +15,7 @@ public abstract class Person {
         this.distinctProductCount = products.length;
     }
     public abstract String getRole();
-    // Add a getter for the name field
+
     public String getName() {
         return this.name;
     }
@@ -25,7 +25,7 @@ public abstract class Person {
     String stockUpdate() {
         StringBuilder stockDetails = new StringBuilder();
         for (int i = 0; i < products.length; i++) {
-            stockDetails.append(products[i].getName()) // Use getName()
+            stockDetails.append(products[i].getName())
                         .append(": ")
                         .append(quantity[i])
                         .append("\n");

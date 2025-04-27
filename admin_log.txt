@@ -1,0 +1,27 @@
+Sun Apr 27 08:59:24 IST 2025: Retailer sent order request for 4 units of Headphones.
+Sun Apr 27 08:59:26 IST 2025: Retailer sent order request for 44 units of Headphones.
+Sun Apr 27 08:59:27 IST 2025: Retailer sent order request for 4 units of Headphones.
+Sun Apr 27 08:59:28 IST 2025: Retailer sent order request for 44 units of Headphones.
+Sun Apr 27 08:59:29 IST 2025: Retailer sent order request for 44 units of Headphones.
+Sun Apr 27 08:59:32 IST 2025: Retailer sent order request for 4 units of Headphones.
+Sun Apr 27 08:59:40 IST 2025: Warehouse profit/loss calculated and displayed.
+Sun Apr 27 08:59:47 IST 2025: Retailer sent order request for 4 units of Headphones.
+Sun Apr 27 08:59:48 IST 2025: Retailer sent order request for 4 units of Headphones.
+Sun Apr 27 08:59:49 IST 2025: Retailer sent order request for 4 units of Headphones.
+Sun Apr 27 08:59:50 IST 2025: Retailer sent order request for 4 units of Headphones.
+Sun Apr 27 08:59:50 IST 2025: Retailer sent order request for 4 units of Headphones.
+Sun Apr 27 08:59:52 IST 2025: Retailer sent order request for 4 units of Headphones.
+Sun Apr 27 08:59:54 IST 2025: Warehouse profit/loss calculated and displayed.
+Sun Apr 27 09:10:46 IST 2025: Retailer sent order request for 10 units of Headphones.
+Sun Apr 27 09:10:58 IST 2025: Retailer sent order request for 100 units of Chocolates.
+Sun Apr 27 09:11:00 IST 2025: Warehouse profit/loss calculated and displayed.
+Sun Apr 27 09:12:57 IST 2025: Retailer sent order request for 10 units of Laptop.
+Sun Apr 27 09:12:58 IST 2025: Warehouse profit/loss calculated and displayed.
+Sun Apr 27 09:14:57 IST 2025: Retailer sent order request for 10 units of Laptop.
+Sun Apr 27 09:15:07 IST 2025: Retailer sent order request for 100 units of Phone.
+Sun Apr 27 09:15:15 IST 2025: Retailer sent order request for 100000000 units of Tablet.
+Sun Apr 27 09:15:17 IST 2025: Warehouse profit/loss calculated and displayed.
+Sun Apr 27 09:15:39 IST 2025: Retailer sent order request for 2000 units of Laptop.
+Sun Apr 27 09:15:40 IST 2025: Warehouse profit/loss calculated and displayed.
+Sun Apr 27 09:16:10 IST 2025: Retailer sent order request for 500 units of Laptop.
+Sun Apr 27 09:16:11 IST 2025: Warehouse profit/loss calculated and displayed.

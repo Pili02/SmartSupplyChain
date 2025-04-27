@@ -2,8 +2,8 @@ public class WarehouseManager extends Person implements OrderHandler, WarehouseO
     private Product[] targetProducts;
     private Order[] orders;
     private Supplier[] suppliers;
-    private double totalCost = 0.0; // Track total cost of acquiring products
-    private double totalRevenue = 0.0; // Track total revenue from fulfilling orders
+    private double totalCost = 0.0;
+    private double totalRevenue = 0.0; 
 
     WarehouseManager(String name, Product[] products, int[] quantity, int id, Transaction[] paymentHistory) {
         super(name, products, quantity, id, paymentHistory);
@@ -23,7 +23,7 @@ public class WarehouseManager extends Person implements OrderHandler, WarehouseO
         return this.suppliers;
     }
 
-    // Add a public setter for suppliers
+
     public void setSuppliers(Supplier[] suppliers) {
         this.suppliers = suppliers;
     }
@@ -56,7 +56,7 @@ public class WarehouseManager extends Person implements OrderHandler, WarehouseO
             this.quantity[productInd] = 0;
             fulfilledQuantity += currQuantity;
 
-            // Acquire remaining quantity from the cheapest suppliers
+
             while (remainingQuantity > 0) {
                 Supplier potentialSupplier = null;
                 int minPrice = Integer.MAX_VALUE;
@@ -91,8 +91,8 @@ public class WarehouseManager extends Person implements OrderHandler, WarehouseO
 
     @Override
     public void addOrder(Order item) {
-        int len = (this.orders == null) ? 0 : this.orders.length; // Handle null orders array
-        Order[] newOrder = new Order[len + 1]; // Fix type mismatch
+        int len = (this.orders == null) ? 0 : this.orders.length; 
+        Order[] newOrder = new Order[len + 1]; 
         for (int i = 0; i < len; i++) {
             newOrder[i] = this.orders[i];
         }
@@ -166,7 +166,7 @@ public class WarehouseManager extends Person implements OrderHandler, WarehouseO
                 this.totalCost += quantityToReduce * minPrice;
             }
 
-            // Track the revenue from fulfilling the order
+
             this.totalRevenue += o.getQuantity() * targetProduct.getPrice();
         }
     }

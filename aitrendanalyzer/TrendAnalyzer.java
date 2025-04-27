@@ -6,10 +6,9 @@ import java.util.HashMap;
 public class TrendAnalyzer {
 
     public TrendAnalyzer() {
-        // Empty constructor (for now)
+        
     }
 
-    // Analyze sales data and find the best-selling product
     public String findBestSellingProduct(Map<String, Integer> salesData) {
         if (salesData == null || salesData.isEmpty()) {
             return "No sales data available.";
@@ -27,7 +26,7 @@ public class TrendAnalyzer {
         return "Best-selling product: " + bestProduct + " (Sold: " + maxSales + " units)";
     }
 
-    // Analyze sales growth (dummy method: just calculate total sales)
+
     public int calculateTotalSales(Map<String, Integer> salesData) {
         int total = 0;
         if (salesData != null) {

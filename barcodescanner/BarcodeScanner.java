@@ -1,26 +1,24 @@
 package barcodescanner;
 
 import java.util.Random;
+import java.util.Map;
+import java.util.HashMap;
 
 public class BarcodeScanner {
 
     private Random random;
+    private Map<Integer, String> store;
 
     public BarcodeScanner() {
         this.random = new Random();
+        this.store = new HashMap<>();
     }
 
-    // Generate a fake barcode for a product (12-digit random number)
-    public String generateBarcode(String productName) {
-        StringBuilder barcode = new StringBuilder();
-        for (int i = 0; i < 12; i++) {
-            barcode.append(random.nextInt(10)); // Append random digits [0-9]
-        }
-        return "Product: " + productName + " | Barcode: " + barcode.toString();
+    public void includeProduct(String name, int id) {
+        store.put(id, name);
     }
 
-    // Validate if a barcode is 12 digits long (simple validation)
-    public boolean validateBarcode(String barcode) {
-        return barcode != null && barcode.matches("\\d{12}");
+    public String getProduct(int id) {
+        return store.get(id);
     }
 }

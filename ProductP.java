@@ -24,7 +24,6 @@ public class ProductP extends Product {
         return this.getName();
     }
 
-    // Delegate to Main if run directly
     public static void main(String[] args) {
         Main.main(args);
     }

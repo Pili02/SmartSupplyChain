@@ -8,7 +8,7 @@ public class Supplier extends Person implements OrderHandler{
     Supplier(String name, Product[] products, int[] quantity, int id, Transaction[] paymentHistory) {
         super(name, products, quantity, id, paymentHistory);
         this.productsOnMarket = new ProductP[this.distinctProductCount];
-        createProductsOnMarket(); // Initialize productsOnMarket with category-based prices
+        createProductsOnMarket(); 
     }
 
     public ProductP[] getProductsOnMarket() {
@@ -24,29 +24,27 @@ public class Supplier extends Person implements OrderHandler{
             Product product = this.products[i];
             double price;
 
-            // Set price based on category
             switch (product.getCategory()) {
                 case "Food":
-                    price = 10 + rand.nextInt(21); // Random price between 10 and 30
+                    price = 10 + rand.nextInt(21); 
                     break;
                 case "Electronics":
-                    price = 800 + rand.nextInt(201); // Random price between 100 and 300
+                    price = 800 + rand.nextInt(201);
                     break;
                 case "MakeUp":
-                    price = 20 + rand.nextInt(51); // Random price between 20 and 70
+                    price = 20 + rand.nextInt(51); 
                     break;
                 case "Miscellaneous":
-                    price = 5 + rand.nextInt(16); // Random price between 5 and 20
+                    price = 5 + rand.nextInt(16); 
                     break;
                 case "MiscellaneousExpensive":
-                    price = 200 + rand.nextInt(301); // Random price between 200 and 500
+                    price = 200 + rand.nextInt(301);
                     break;
                 default:
-                    price = 50; // Default price
+                    price = 50; 
                     break;
             }
 
-            // Create ProductP object with the calculated price
             this.productsOnMarket[i] = new ProductP(
                 product.getName(),
                 product.getCategory(),
@@ -57,15 +55,15 @@ public class Supplier extends Person implements OrderHandler{
     }
 
     int receiveOrderRequest(Product item, int quantity) {
-        boolean found = false; // Fix boolean initialization
+        boolean found = false;
         int productInd = 0;
         for (productInd = 0; productInd < this.distinctProductCount; productInd++) {
-            if (this.products[productInd].equals(item)) { // Fix variable reference
+            if (this.products[productInd].equals(item)) { 
                 found = true;
                 break;
             }
         }
-        if (!found) { // Fix boolean comparison
+        if (!found) {
             return 0;
         }
         int currQuantity = this.quantity[productInd];
@@ -76,7 +74,7 @@ public class Supplier extends Person implements OrderHandler{
         currQuantity -= quantity;
         this.quantity[productInd] = currQuantity;
 
-        // Example of creating a new Transaction
+
         Transaction transaction = new Transaction(
             "Order from Supplier",
             "Warehouse",
@@ -112,8 +110,8 @@ public class Supplier extends Person implements OrderHandler{
     int getPrice(ProductP item) {
         int id = item.getId();
         for (int i = 0; i < this.distinctProductCount; i++) {
-            if (productsOnMarket[i] != null && productsOnMarket[i].getId() == id) { // Add null check
-                return (int) productsOnMarket[i].getPrice(); // Fix type casting
+            if (productsOnMarket[i] != null && productsOnMarket[i].getId() == id) {
+                return (int) productsOnMarket[i].getPrice(); 
             }
         }
         return -1;
@@ -122,7 +120,7 @@ public class Supplier extends Person implements OrderHandler{
     int getQuantity(Product item) {
         int id = item.getId();
         for (int i = 0; i < this.distinctProductCount; i++) {
-            if (productsOnMarket[i] != null && productsOnMarket[i].getId() == id) { // Add null check
+            if (productsOnMarket[i] != null && productsOnMarket[i].getId() == id) { 
                 return this.quantity[i];
             }
         }
@@ -132,7 +130,7 @@ public class Supplier extends Person implements OrderHandler{
     int getQuantity(ProductP item) {
         int id = item.getId();
         for (int i = 0; i < this.distinctProductCount; i++) {
-            if (productsOnMarket[i] != null && productsOnMarket[i].getId() == id) { // Add null check
+            if (productsOnMarket[i] != null && productsOnMarket[i].getId() == id) { 
                 return this.quantity[i];
             }
         }
@@ -142,7 +140,7 @@ public class Supplier extends Person implements OrderHandler{
     void reduceStock(Product item, int quantity) {
         int productInd = 0;
         for (productInd = 0; productInd < this.distinctProductCount; productInd++) {
-            if (this.products[productInd].equals(item)) { // Fix variable reference
+            if (this.products[productInd].equals(item)) { 
                 break;
             }
         }
@@ -152,7 +150,7 @@ public class Supplier extends Person implements OrderHandler{
         if (this.quantity[productInd] < quantity) {
             return;
         }
-        this.quantity[productInd] -= quantity; // Fix variable name
+        this.quantity[productInd] -= quantity; 
     }
 
     void reduceStock(Product item, int... quantities) {

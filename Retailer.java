@@ -33,8 +33,8 @@ public class Retailer extends Person {
     }
 
     void addTransaction(String name, String receiver, Product product, int amount, double price) {
-        Transaction transaction = new Transaction(name, receiver, product, amount, price); // Use parameterized constructor
-        // Add the transaction to the retailer's transaction history
+        Transaction transaction = new Transaction(name, receiver, product, amount, price); 
+
         for (int i = 0; i < this.paymentHistory.length; i++) {
             if (this.paymentHistory[i] == null) {
                 this.paymentHistory[i] = transaction;
